@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.liang.MybatisMapper.IndexMapper">
+
+	<select id="selectVisitsList" resultType="java.util.Map">
+	<![CDATA[
+		select count(x.id) SL, '省平台当日' lable
+		from v_sjgx_mrfwl x
+		where x.lable = 'SPT'
+		  and to_char(x.RQ, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd')
+		union
+		select count(x.id) SL, '省平台当月' lable
+		from v_sjgx_mrfwl x
+		where x.lable = 'spt'
+		  and to_char(x.RQ, 'yyyymm') = to_char(sysdate, 'yyyymm')
+		union
+		select count(x.id) SL,'住建部当日' lable
+		from v_sjgx_mrfwl x
+		where x.lable = 'zjb'
+		  and to_char(x.RQ, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd')
+		union
+		select count(x.id) SL,'住建部当月' lable
+		from v_sjgx_mrfwl x
+		where x.lable = 'zjb'
+		  and to_char(x.RQ, 'yyyymm') = to_char(sysdate, 'yyyymm')
+		]]>
+	</select>
+	<select id="selectMyfwlList" resultType="java.util.Map">
+		<![CDATA[
+		select  * from SJGX_SYYFWLZSB
+		]]>
+	</select>
+	<select id="selectMrfwlList" resultType="java.util.Map">
+		<![CDATA[
+		select  * from SJGX_SYRFWLZSB
+		]]>
+	</select>
+	<select id="insertIntoFwl" resultType="java.util.Map">
+		<![CDATA[
+		 call P_SJGX_FWL()
+		]]>
+	</select>
+</mapper>
