@@ -1,2 +1,2 @@
 # elwork
-基于eladmin运行的工作业务模块，集成了mbatisplus。
+基于[eladmin](https://github.com/elunez/eladmin)运行的工作业务模块，集成了mbatisplus。
